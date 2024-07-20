@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="97f4f793-90f3-407b-8c8f-1bc8ceedd901" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/cli/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cli/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cli/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cli/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/public/ui/logo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/cli/public/ui/logo.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/src/assets/react.svg" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/assets/icons/react.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/src/router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/vite-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/cli/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cli/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cli/vite.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2jLSlju7zK3cQohOmaA8RO8kPKr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/My PC/Projects/Web/HealthTOM Task/cli/public/ui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\My PC\\Projects\\Web\\HealthTOM Task\\cli\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\public\ui" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets\icons" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets\icons" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\ui\layouts" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\features\viewer" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97f4f793-90f3-407b-8c8f-1bc8ceedd901" name="Changes" comment="" />
+      <created>1721165021293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721165021293</updated>
+      <workItem from="1721165024311" duration="9833000" />
+      <workItem from="1721238550626" duration="7765000" />
+      <workItem from="1721246419439" duration="721000" />
+      <workItem from="1721267177740" duration="7791000" />
+      <workItem from="1721275075997" duration="430000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
