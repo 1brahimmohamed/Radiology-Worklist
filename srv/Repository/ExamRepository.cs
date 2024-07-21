@@ -32,6 +32,11 @@ public class ExamRepository: IExamRepository
         {
             examModels = examModels.Where(e => e.Status == query.Status);
         }
+        
+        if (query.RadiologistId != null)
+        {
+            examModels = examModels.Where(e => e.RadiologistId == query.RadiologistId);
+        }
 
         if (!string.IsNullOrWhiteSpace(query.SortBy))
         {

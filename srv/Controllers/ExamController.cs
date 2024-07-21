@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using srv.Dtos.Exam;
 using srv.Helpers;
 using srv.Interfaces;
 using srv.Mappers;
+using srv.Models;
 
 namespace srv.Controllers;
 
@@ -13,11 +17,13 @@ public class ExamController: ControllerBase
 {
     private readonly IExamRepository _examRepo;
     private readonly IPatientRepository _patientRepo;
+    private readonly UserManager<Radiologist> _userManager;
 
-    public ExamController(IExamRepository examRepo, IPatientRepository patientRepo)
+    public ExamController(IExamRepository examRepo, IPatientRepository patientRepo, UserManager<Radiologist> userManager)
     {
         _examRepo = examRepo;
         _patientRepo = patientRepo;
+        _userManager = userManager;
     }
     
     [HttpGet]
@@ -109,5 +115,37 @@ public class ExamController: ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet("my-exams")]
+    [Authorize]
+    public async Task<IActionResult> GetMyExams()
+    {
+        var userEmail = User.FindFirstValue(ClaimTypes.Email);
+
+        if (userEmail == null)
+        {
+            Console.WriteLine("User not found 1");
+            return Unauthorized();
+        }
+        
+        
+        var user = await _userManager.FindByEmailAsync(userEmail);
+        
+        if (user == null)
+        {
+            Console.WriteLine("User not found 2");
+            return Unauthorized();
+        }
+
+        var exams = await _examRepo.GetAllAsync(new ExamQueryObject
+        {
+            RadiologistId = user.Id
+        });
+
+        var examDto = exams.Select(s => s.ToExamDto()).ToList();
+
+        return Ok(examDto);
+    }
+    
 
 }
