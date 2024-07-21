@@ -1,6 +1,6 @@
 import router from "./router.tsx";
 import {RouterProvider} from "react-router-dom";
-import authStore from "./features/auth-store.ts";
+import authStore from "./features/auth/auth-store.ts";
 import {Toaster} from "react-hot-toast";
 import AuthProvider from "react-auth-kit";
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';

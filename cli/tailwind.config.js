@@ -1,3 +1,5 @@
+import THEME_COLORS from "./src/assets/THEME_COLORS.ts";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,18 +9,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary-dark': '#0c0c2a',
-        'primary-light': '#5a77e6',
-        'primary-main': '#091c94',
+        'primary-dark': THEME_COLORS['primary-dark'],
+        'primary-light': THEME_COLORS['primary-light'],
+        'primary-main': THEME_COLORS['primary-main'],
 
-        'secondary-dark': '#1f0032',
-        'secondary-light': '#220144',
-        'secondary-main': '#3c345f',
+        'secondary-dark': THEME_COLORS['secondary-dark'],
+        'secondary-light': THEME_COLORS['secondary-light'],
+        'secondary-main': THEME_COLORS['secondary-main'],
 
-        'common-dark': '#726f7e',
-        'common-light': '#a19fad',
-        'common-main': '#fff',
-        'common-black': '#3b3b3b'
+        'common-dark': THEME_COLORS['common-dark'],
+        'common-light': THEME_COLORS['common-light'],
+        'common-main': THEME_COLORS['common-main'],
+        'common-black': THEME_COLORS['common-black']
       }
     },
   },

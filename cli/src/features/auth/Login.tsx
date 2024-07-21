@@ -14,6 +14,7 @@ const Login = () => {
     const isAuthenticated = useIsAuthenticated();
     const navigate = useNavigate();
 
+    // if user is signed in, redirect
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/');
