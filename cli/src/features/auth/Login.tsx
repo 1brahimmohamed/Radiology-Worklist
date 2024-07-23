@@ -3,6 +3,9 @@ import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import {useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
+import {login} from "../../services/apiAuth.ts";
+import redirect from "../../utils/redirect.ts";
+import {ILoginResponse} from "../../interfaces/auth.ts";
 
 const Login = () => {
 
@@ -25,43 +28,46 @@ const Login = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
+        // prevent multiple submissions by disabling the button and showing a spinner
         setIsSubmitting(true);
 
+        // get form data and validate it
         const formData = new FormData(e.target as HTMLFormElement);
+
         if (!formData.get('email') || !formData.get('password')) {
-            toast.error('Please fill in all fields', {duration: 2500});
+
+            toast.error(
+                'Please fill in all fields',
+                {duration: 2500}
+            );
+
             setIsSubmitting(false);
             return;
         }
 
-        const response = {
-            status: 'success',
-            data: {
-                id: 1,
-                name: 'John Doe',
-                email: 'j@ht.com',
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiZG9jdG9yIiwiaWF0IjoxNjI5MzUwNjQyLCJleHAiOjE2MjkzNTA5NDJ9.1'
-            }
-        }
+        const response = await login(formData);
+
         setIsSubmitting(false);
 
         if (response.status === 'success') {
+
+            // save user data to local storage and redirect
+            const {data}: ILoginResponse = response;
+
             signIn({
                 auth: {
-                    token: response.data.token,
+                    token: data.token,
                     type: 'Bearer'
                 },
-                userState: response.data
+                userState: data
             });
 
-            toast.success('Login successful', {duration: 2500});
-
-            setTimeout(() => {
-                navigate('/');
-            }, 2000);
+            toast.success('Login successful');
+            redirect(navigate, '/');
 
         } else {
-            toast.error('Login failed, please try again', {duration: 2500});
+            const {message} = response;
+            toast.error(message);
         }
     };
 
