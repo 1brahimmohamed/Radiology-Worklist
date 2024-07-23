@@ -1,4 +1,4 @@
-import createImageIds from "../helpers/createImageIds.ts";
+import createImageIds from "../utils/createImageIds.ts";
 
 const INITIAL_VIEWER_CONFIG = {
     activeViewportIndex: 0,

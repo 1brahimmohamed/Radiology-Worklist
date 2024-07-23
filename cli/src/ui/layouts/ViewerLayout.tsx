@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import {ViewerProvider} from "../../context/ViewerContext.tsx";
-import initCornerstone from "../../helpers/initCornerstone.js";
+import initCornerstone from "../../utils/initCornerstone.js";
 import ViewerSidebar from "../../features/viewer/ViewerSidebar.tsx";
 
 initCornerstone();
