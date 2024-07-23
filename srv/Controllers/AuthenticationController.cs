@@ -29,12 +29,12 @@ namespace srv.Controllers
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
 
-            if (user == null) 
-                return Unauthorized("Invalid username!");
+            if (user == null)
+                return Unauthorized("Invalid Credentials! Try again");
 
             var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if (!result.Succeeded) 
+            if (!result.Succeeded)
                 return Unauthorized("Username not found and/or password incorrect");
 
             return Ok(
@@ -60,7 +60,7 @@ namespace srv.Controllers
                     Email = registerDto.Email,
                     Gender = registerDto.Gender,
                     Name = registerDto.Name,
-                    UserName = registerDto.Email 
+                    UserName = registerDto.Email
                 };
 
                 var createdUser = await _userManager.CreateAsync(appUser, registerDto.Password);

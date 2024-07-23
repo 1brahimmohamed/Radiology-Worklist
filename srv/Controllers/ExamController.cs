@@ -25,7 +25,7 @@ public class ExamController: ControllerBase
         _patientRepo = patientRepo;
         _userManager = userManager;
     }
-    
+
     [HttpGet]
     [Authorize]
     public async Task<IActionResult> GetAll([FromQuery] ExamQueryObject query)
@@ -39,7 +39,7 @@ public class ExamController: ControllerBase
 
         return Ok(examDto);
     }
-    
+
     [HttpGet("{id}")]
     [Authorize]
     public async Task<IActionResult> GetById([FromRoute] int id)
@@ -51,12 +51,12 @@ public class ExamController: ControllerBase
 
         if (exam == null)
         {
-            return NotFound();
+            return NotFound("No Exam with this ID was found.");
         }
 
         return Ok(exam.ToExamDto());
     }
-    
+
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> Create([FromBody] CreateExamRequestDto createExamDto)
@@ -70,14 +70,14 @@ public class ExamController: ControllerBase
         {
             return NotFound("Patient Not Found");
         }
-        
+
         var examModel = createExamDto.ToExamFromCreateDto();
 
         await _examRepo.CreateAsync(examModel);
 
         return CreatedAtAction(nameof(GetById), new { id = examModel.Id }, examModel.ToExamDto());
     }
-    
+
     [HttpPut("{id}")]
     [Authorize]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateExamRequestDto updateExamDto)
@@ -89,14 +89,14 @@ public class ExamController: ControllerBase
 
         if (examModel == null)
         {
-            return NotFound();
+            return NotFound("No Exam with this ID was found.");
         }
-        
+
         await _examRepo.UpdateAsync(id, updateExamDto);
 
         return Ok(examModel.ToExamDto());
     }
-    
+
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> Delete([FromRoute] int id)
@@ -108,14 +108,14 @@ public class ExamController: ControllerBase
 
         if (examModel == null)
         {
-            return NotFound();
+            return NotFound("No Exam with this ID was found.");
         }
 
         await _examRepo.DeleteAsync(id);
 
         return NoContent();
     }
-    
+
     [HttpGet("my-exams")]
     [Authorize]
     public async Task<IActionResult> GetMyExams()
@@ -124,17 +124,15 @@ public class ExamController: ControllerBase
 
         if (userEmail == null)
         {
-            Console.WriteLine("User not found 1");
-            return Unauthorized();
+            return Unauthorized("You are not authorized to access this resource.");
         }
-        
-        
+
+
         var user = await _userManager.FindByEmailAsync(userEmail);
-        
+
         if (user == null)
         {
-            Console.WriteLine("User not found 2");
-            return Unauthorized();
+            return Unauthorized("You are not authorized to access this resource.");
         }
 
         var exams = await _examRepo.GetAllAsync(new ExamQueryObject
@@ -146,6 +144,6 @@ public class ExamController: ControllerBase
 
         return Ok(examDto);
     }
-    
+
 
 }

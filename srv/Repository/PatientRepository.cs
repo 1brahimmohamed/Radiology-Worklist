@@ -42,7 +42,7 @@ public class PatientRepository : IPatientRepository
                     : patientModels.OrderBy(p => p.NationalId);
             }
         }
-        
+
         var skipNumber = (query.PageNumber - 1) * query.PageSize;
 
         return await patientModels
@@ -63,6 +63,7 @@ public class PatientRepository : IPatientRepository
     {
         return await _context.Patients
             .Include(p => p.Exams)
+            .ThenInclude(e => e.Radiologist)
             .FirstOrDefaultAsync(p => p.NationalId == nationalId);
     }
 
@@ -85,7 +86,7 @@ public class PatientRepository : IPatientRepository
         existingPatient.Name = updatePatientDto.Name;
         existingPatient.Email = updatePatientDto.Name;
         existingPatient.Birthday = updatePatientDto.Birthday;
-        
+
         await _context.SaveChangesAsync();
 
         return existingPatient;

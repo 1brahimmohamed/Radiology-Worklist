@@ -26,10 +26,10 @@ public class PatientController : ControllerBase
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
-        
+
         var patients = await _patientRepo.GetAllAsync(query);
-        
-        
+
+
         var patientDto = patients.Select(s => s.ToPatientDto()).ToList();
 
         return Ok(patientDto);
@@ -46,11 +46,30 @@ public class PatientController : ControllerBase
 
         if (patient == null)
         {
-            return NotFound();
+            return NotFound("No Patient with this ID was found.");
         }
 
         return Ok(patient.ToPatientDto());
     }
+    
+    [HttpGet("nationalId/{nationalId:long}")]
+    [Authorize]
+    public async Task<IActionResult> GetByNationalId([FromRoute] long nationalId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var patient = await _patientRepo.GetByNationalIdAsync(nationalId.ToString());
+
+        if (patient == null)
+        {
+            return NotFound("No Patient with this National ID was found.");
+        }
+
+        return Ok(patient.ToPatientDto());
+    }
+    
+    
 
     [HttpPost]
     [Authorize]
@@ -77,7 +96,7 @@ public class PatientController : ControllerBase
 
         if (patientModel == null)
         {
-            return NotFound();
+            return NotFound("No Patient with this ID was found.");
         }
 
         return Ok(patientModel.ToPatientDto());
@@ -94,7 +113,7 @@ public class PatientController : ControllerBase
 
         if (patientModel == null)
         {
-            return NotFound();
+            return NotFound("No Patient with this ID was found.");
         }
 
         return NoContent();
