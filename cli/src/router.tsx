@@ -1,24 +1,29 @@
-import {createBrowserRouter} from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet';
-import Login from './features/auth/Login';
-import NotFound from './ui/404';
-import Logout from "./features/auth/Logout.tsx";
-import ViewerLayout from "./ui/layouts/ViewerLayout.tsx";
-import MainLayout from "./ui/layouts/MainLayout.tsx";
-import Viewer from "./features/viewer/Viewer.tsx";
+import { Suspense, lazy } from 'react';
+import Loading from "./ui/Loading.tsx";
+
+// Lazy loaded components
+const Login = lazy(() => import('./features/auth/Login'));
+const Logout = lazy(() => import('./features/auth/Logout.tsx'));
+const ViewerLayout = lazy(() => import('./ui/layouts/ViewerLayout.tsx'));
+const MainLayout = lazy(() => import('./ui/layouts/MainLayout.tsx'));
+const Viewer = lazy(() => import('./features/viewer/Viewer.tsx'));
+const Worklist = lazy(() => import('./features/worklist/Worklist.tsx'));
+const NotFound = lazy(() => import('./ui/404'));
 
 const router = createBrowserRouter([
     {
         path: '/',
-        // element: <AuthOutlet fallbackPath={'/login'}></AuthOutlet>,
+        element: <AuthOutlet fallbackPath={'/login'}></AuthOutlet>,
         children: [
             {
                 path: "/",
                 element: <MainLayout/>,
                 children: [
                     {
-                        path: '/',
-                        element: <div>Home</div>
+                        index: true,
+                        element: <Worklist />
                     },
                     {
                         path: 'logout',
@@ -26,16 +31,16 @@ const router = createBrowserRouter([
                     }
                 ]
             },
-        ]
-    },
-    {
-        path: "viewer",
-        element: <ViewerLayout/>,
-        children: [
             {
-                index: true,
-                element: <Viewer/>
-            }
+                path: "viewer/:id",
+                element: <ViewerLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <Viewer/>
+                    }
+                ]
+            },
         ]
     },
     {
@@ -48,4 +53,11 @@ const router = createBrowserRouter([
     }
 ]);
 
-export default router;
+// Wrap the router in Suspense to handle lazy loading
+const LazyLoadedRouter = () => (
+    <Suspense fallback={<Loading />}>
+        <RouterProvider router={router}/>
+    </Suspense>
+);
+
+export default LazyLoadedRouter;
