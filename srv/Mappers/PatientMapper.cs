@@ -1,4 +1,5 @@
 ﻿using srv.Dtos.Patient;
+using srv.Dtos.PatientAndExam;
 using srv.Models;
 
 namespace srv.Mappers;
@@ -18,6 +19,7 @@ public static class PatientMapper
             Exams = patientModel.Exams.Select(e => e.ToWithExamPatientDto()).ToList(),
         };
     }
+
     public static Patient ToPatientFromCreateDto(this CreatePatientRequestDto createPatientRequestDto)
     {
         return new Patient
@@ -28,10 +30,9 @@ public static class PatientMapper
             Gender = createPatientRequestDto.Gender,
             Birthday = createPatientRequestDto.Birthday,
         };
-
     }
-    
-    public static Patient ToPatientFromUpdateDto(this UpdatePatientRequestDto updatePatientRequestDto )
+
+    public static Patient ToPatientFromUpdateDto(this UpdatePatientRequestDto updatePatientRequestDto)
     {
         return new Patient
         {
@@ -54,4 +55,17 @@ public static class PatientMapper
         };
     }
 
+    public static Patient ToPatientFromCreatePatientAndExamDto(
+        this CreatePatientAndExamRequestDto createPatientAndExamRequestDto)
+    {
+        return new Patient
+        {
+            NationalId = createPatientAndExamRequestDto.NationalId,
+            Name = createPatientAndExamRequestDto.Name,
+            Email = createPatientAndExamRequestDto.Email,
+            Gender = createPatientAndExamRequestDto.Gender,
+            Birthday = createPatientAndExamRequestDto.Birthday,
+        };
+    }
+    
 }

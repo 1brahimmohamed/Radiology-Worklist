@@ -1,5 +1,6 @@
 ﻿using srv.Dtos.Exam;
 using srv.Dtos.Patient;
+using srv.Dtos.PatientAndExam;
 using srv.Dtos.Radiologist;
 using srv.Models;
 
@@ -67,6 +68,20 @@ public static class ExamMapper
         {
             Name = radiologist.Name,
             Id = radiologist.Id,
+        };
+    }
+
+    public static Exam ToExamFromCreatePatientAndExamRequestDto(
+        this CreatePatientAndExamRequestDto createPatientAndExamRequestDto, int patientId)
+    {
+        return new Exam
+        {
+            Date = createPatientAndExamRequestDto.Date,
+            Status = createPatientAndExamRequestDto.Status,
+            Type = createPatientAndExamRequestDto.Type,
+            Comments = createPatientAndExamRequestDto.Comments,
+            RadiologistId = createPatientAndExamRequestDto.RadiologistId,
+            PatientId = patientId,
         };
     }
 }

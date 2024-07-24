@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using srv.Dtos.Exam;
+using srv.Dtos.PatientAndExam;
 using srv.Helpers;
 using srv.Interfaces;
 using srv.Mappers;
@@ -145,5 +146,27 @@ public class ExamController: ControllerBase
         return Ok(examDto);
     }
 
+    public async Task<IActionResult> CreatePatientAndExam(CreatePatientAndExamRequestDto createPatientAndExamRequestDto)
+    {
+        var patientModel = createPatientAndExamRequestDto.ToPatientFromCreatePatientAndExamDto();
+        
+        var patient = await _patientRepo.CreateAsync(patientModel);
+
+        if (patient == null)
+        {
+            return BadRequest("Patient could not be created.");
+        }
+        
+        var examModel = createPatientAndExamRequestDto.ToExamFromCreatePatientAndExamRequestDto(patient.Id);
+        
+        var exam = await _examRepo.CreateAsync(examModel);
+        
+        if (exam == null)
+        {
+            return BadRequest("Exam could not be created.");
+        }
+        
+        return CreatedAtAction(nameof(GetById), new { id = exam.Id }, exam.ToExamDto());
+    }
 
 }
