@@ -14,7 +14,9 @@ namespace srv.Controllers
         private readonly UserManager<Radiologist> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<Radiologist> _signinManager;
-        public AuthenticationController(UserManager<Radiologist> userManager, ITokenService tokenService, SignInManager<Radiologist> signInManager)
+
+        public AuthenticationController(UserManager<Radiologist> userManager, ITokenService tokenService,
+            SignInManager<Radiologist> signInManager)
         {
             _userManager = userManager;
             _tokenService = tokenService;

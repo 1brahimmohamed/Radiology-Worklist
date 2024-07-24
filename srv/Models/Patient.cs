@@ -5,7 +5,7 @@ using srv.Helpers;
 namespace srv.Models;
 
 [Table("Patients")]
-public class Patient: User
+public class Patient : User
 {
     public int Id { get; set; }
     public string NationalId { get; set; } = String.Empty;

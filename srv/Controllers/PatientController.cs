@@ -51,7 +51,7 @@ public class PatientController : ControllerBase
 
         return Ok(patient.ToPatientDto());
     }
-    
+
     [HttpGet("nationalId/{nationalId:long}")]
     [Authorize]
     public async Task<IActionResult> GetByNationalId([FromRoute] long nationalId)
@@ -68,8 +68,6 @@ public class PatientController : ControllerBase
 
         return Ok(patient.ToPatientDto());
     }
-    
-    
 
     [HttpPost]
     [Authorize]

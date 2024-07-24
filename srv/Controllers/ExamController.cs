@@ -14,13 +14,14 @@ namespace srv.Controllers;
 
 [Route("api/exam")]
 [ApiController]
-public class ExamController: ControllerBase
+public class ExamController : ControllerBase
 {
     private readonly IExamRepository _examRepo;
     private readonly IPatientRepository _patientRepo;
     private readonly UserManager<Radiologist> _userManager;
 
-    public ExamController(IExamRepository examRepo, IPatientRepository patientRepo, UserManager<Radiologist> userManager)
+    public ExamController(IExamRepository examRepo, IPatientRepository patientRepo,
+        UserManager<Radiologist> userManager)
     {
         _examRepo = examRepo;
         _patientRepo = patientRepo;
@@ -149,24 +150,23 @@ public class ExamController: ControllerBase
     public async Task<IActionResult> CreatePatientAndExam(CreatePatientAndExamRequestDto createPatientAndExamRequestDto)
     {
         var patientModel = createPatientAndExamRequestDto.ToPatientFromCreatePatientAndExamDto();
-        
+
         var patient = await _patientRepo.CreateAsync(patientModel);
 
         if (patient == null)
         {
             return BadRequest("Patient could not be created.");
         }
-        
+
         var examModel = createPatientAndExamRequestDto.ToExamFromCreatePatientAndExamRequestDto(patient.Id);
-        
+
         var exam = await _examRepo.CreateAsync(examModel);
-        
+
         if (exam == null)
         {
             return BadRequest("Exam could not be created.");
         }
-        
+
         return CreatedAtAction(nameof(GetById), new { id = exam.Id }, exam.ToExamDto());
     }
-
 }

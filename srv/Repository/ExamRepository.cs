@@ -7,7 +7,7 @@ using srv.Models;
 
 namespace srv.Repository;
 
-public class ExamRepository: IExamRepository
+public class ExamRepository : IExamRepository
 {
     private readonly ApplicationDbContext _context;
 
@@ -15,7 +15,7 @@ public class ExamRepository: IExamRepository
     {
         _context = context;
     }
-    
+
     public async Task<List<Exam>> GetAllAsync(ExamQueryObject query)
     {
         var examModels = _context.Exams
@@ -32,7 +32,7 @@ public class ExamRepository: IExamRepository
         {
             examModels = examModels.Where(e => e.Status == query.Status);
         }
-        
+
         if (query.RadiologistId != null)
         {
             examModels = examModels.Where(e => e.RadiologistId == query.RadiologistId);
@@ -54,21 +54,20 @@ public class ExamRepository: IExamRepository
                     : examModels.OrderBy(p => p.Status);
             }
         }
-        
+
         var skipNumber = (query.PageNumber - 1) * query.PageSize;
 
         return await examModels
             .Skip(skipNumber)
             .Take(query.PageSize)
             .ToListAsync();
-        
     }
 
     public async Task<Exam?> GetByIdAsync(int id)
     {
         return await _context.Exams
             .Include(e => e.Patient)
-            .Include(e=> e.Radiologist)
+            .Include(e => e.Radiologist)
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
@@ -81,7 +80,7 @@ public class ExamRepository: IExamRepository
 
     public async Task<Exam?> UpdateAsync(int id, UpdateExamRequestDto updateExamDto)
     {
-       var existingExam = await _context.Exams.FirstOrDefaultAsync(p => p.Id == id);
+        var existingExam = await _context.Exams.FirstOrDefaultAsync(p => p.Id == id);
 
         if (existingExam == null)
         {
@@ -93,7 +92,7 @@ public class ExamRepository: IExamRepository
         existingExam.Date = updateExamDto.Date;
         existingExam.RadiologistId = updateExamDto.RadiologistId;
 
-        
+
         await _context.SaveChangesAsync();
 
         return existingExam;

@@ -2,7 +2,7 @@
 
 namespace srv.Helpers;
 
-public class ExamQueryObject: QueryObject
+public class ExamQueryObject : QueryObject
 {
     public string? RadiologistId { get; set; } = null;
     public DateTime? Date { get; set; } = null;

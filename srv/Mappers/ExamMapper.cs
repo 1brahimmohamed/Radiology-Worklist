@@ -8,7 +8,6 @@ namespace srv.Mappers;
 
 public static class ExamMapper
 {
-    
     public static ExamDto ToExamDto(this Exam exam)
     {
         return new ExamDto
@@ -22,7 +21,7 @@ public static class ExamMapper
             Patient = exam.Patient.ToWithExamPatientDto(),
         };
     }
-    
+
     public static Exam ToExamFromCreateDto(this CreateExamRequestDto createExamRequestDto)
     {
         return new Exam
@@ -35,7 +34,7 @@ public static class ExamMapper
             PatientId = createExamRequestDto.PatientId,
         };
     }
-    
+
     public static Exam ToExamFromUpdateDto(this UpdateExamRequestDto updateExamRequestDto, int patientId)
     {
         return new Exam
@@ -61,7 +60,7 @@ public static class ExamMapper
             Radiologist = exam.Radiologist.ToRadiologistExamDto(),
         };
     }
-    
+
     public static RadiologistExamDto ToRadiologistExamDto(this Radiologist radiologist)
     {
         return new RadiologistExamDto

@@ -67,5 +67,4 @@ public static class PatientMapper
             Birthday = createPatientAndExamRequestDto.Birthday,
         };
     }
-    
 }
