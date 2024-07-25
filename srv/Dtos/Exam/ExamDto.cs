@@ -17,5 +17,4 @@ public class ExamDto
     public RadiologistExamDto Radiologist { get; set; } = null!;
 
     public WithExamPatientDto Patient { get; set; } = null!;
-    
 }

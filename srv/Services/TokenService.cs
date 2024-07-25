@@ -9,7 +9,6 @@ namespace srv.Services;
 
 public class TokenService : ITokenService
 {
-
     private readonly IConfiguration _config;
     private readonly SymmetricSecurityKey _key;
 
@@ -18,7 +17,7 @@ public class TokenService : ITokenService
         _config = config;
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SigningKey"]));
     }
-    
+
     public string CreateToken(Radiologist radiologist)
     {
         var claims = new List<Claim>
