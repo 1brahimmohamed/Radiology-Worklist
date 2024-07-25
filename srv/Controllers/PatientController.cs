@@ -52,23 +52,6 @@ public class PatientController : ControllerBase
         return Ok(patient.ToPatientDto());
     }
 
-    [HttpGet("nationalId/{nationalId:long}")]
-    [Authorize]
-    public async Task<IActionResult> GetByNationalId([FromRoute] long nationalId)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var patient = await _patientRepo.GetByNationalIdAsync(nationalId.ToString());
-
-        if (patient == null)
-        {
-            return NotFound("No Patient with this National ID was found.");
-        }
-
-        return Ok(patient.ToPatientDto());
-    }
-
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> Create([FromBody] CreatePatientRequestDto createPatientDto)
