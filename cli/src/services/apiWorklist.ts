@@ -30,15 +30,15 @@ export const getExams = async () => {
 export const doesPatientExist = async (nationalId: string) => {
     const resp = await AxiosUtil.sendRequest({
         method: 'GET',
-        url: `${API_URL}/patient/nationalId/${nationalId}`,
+        url: `${API_URL}/patient?NationalId=${nationalId}`,
         headers: {
             Authorization: `Bearer ${localStorage.getItem('_auth')}`
         }
     });
 
     if (resp.status === 'success') {
-        const {data}: IPatient = resp;
-        return data;
+        const {data}: IPatient[] = resp;
+        return data[0];
     }
 }
 

@@ -41,7 +41,7 @@ const ExamInfo = ({formRef}) => {
                             required
                             label={"Comments"}
                             type={"text-area"}
-                            divClassName={"full"}
+                            divClassName={"sm:col-span-full"}
                         />
 
                     </div>

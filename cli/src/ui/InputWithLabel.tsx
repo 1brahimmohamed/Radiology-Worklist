@@ -17,12 +17,12 @@ const InputWithLabel: FC<TInputWithLabel> = ({
                                                  id,
                                                  label,
                                                  inputClassName,
-                                                 divClassName = '3',
+                                                 divClassName = 'sm:col-span-3',
                                                  onInputChangeHandler,
                                                  ...rest
                                              }) => {
     return (
-        <div className={`sm:col-span-${divClassName}`}>
+        <div className={`${divClassName}`}>
             <label htmlFor={id}
                    className="block text-sm font-medium leading-6 text-gray-900">
                 {label}

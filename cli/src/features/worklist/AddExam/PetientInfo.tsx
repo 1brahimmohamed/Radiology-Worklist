@@ -23,7 +23,6 @@ const PatientInfo = ({
         const newValue = event.target.value;
         if (newValue.length === 14) {
 
-            console.log("sending request to fetch patient data");
             const patientData = await doesPatientExist(newValue);
 
             if (patientData) {

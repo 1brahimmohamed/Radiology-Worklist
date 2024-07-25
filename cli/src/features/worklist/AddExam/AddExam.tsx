@@ -76,18 +76,12 @@ const AddExam = () => {
 
             if (resp.status === 'error') {
                 const {message} = resp;
-                toast.error(message);
+                toast.error(message.title);
             }
 
-            if (resp.status === 'success') {
-                const {data}: IExamResponse = resp;
-
+            else if (resp.status === 'success') {
                 toast.success("Exam added successfully");
-
-                console.log("success", data);
-
                 redirect(navigate, '/');
-
             }
 
         }
