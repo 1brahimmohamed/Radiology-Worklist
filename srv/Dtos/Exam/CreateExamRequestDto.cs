@@ -12,5 +12,5 @@ public class CreateExamRequestDto
     public string Type { get; set; } = String.Empty;
 
     public int PatientId { get; set; }
-    public string RadiologistId { get; set; }
+    public string RadiologistId { get; set; } = String.Empty;
 }

@@ -76,7 +76,9 @@ public class PatientRepository : IPatientRepository
 
     public async Task<Patient?> UpdateAsync(int id, UpdatePatientRequestDto updatePatientDto)
     {
-        var existingPatient = await _context.Patients.FirstOrDefaultAsync(p => p.Id == id);
+        var existingPatient = await _context.Patients
+            .Include(p => p.Exams)
+            .ThenInclude(e => e.Radiologist).FirstOrDefaultAsync(p => p.Id == id);
 
         if (existingPatient == null)
         {
@@ -84,7 +86,7 @@ public class PatientRepository : IPatientRepository
         }
 
         existingPatient.Name = updatePatientDto.Name;
-        existingPatient.Email = updatePatientDto.Name;
+        existingPatient.Email = updatePatientDto.Email;
         existingPatient.Birthday = updatePatientDto.Birthday;
 
         await _context.SaveChangesAsync();

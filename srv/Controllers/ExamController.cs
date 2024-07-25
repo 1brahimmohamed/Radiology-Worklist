@@ -147,6 +147,8 @@ public class ExamController : ControllerBase
         return Ok(examDto);
     }
 
+    [HttpPost("create-patient-and-exam")]
+    [Authorize]
     public async Task<IActionResult> CreatePatientAndExam(CreatePatientAndExamRequestDto createPatientAndExamRequestDto)
     {
         var patientModel = createPatientAndExamRequestDto.ToPatientFromCreatePatientAndExamDto();
@@ -160,13 +162,9 @@ public class ExamController : ControllerBase
 
         var examModel = createPatientAndExamRequestDto.ToExamFromCreatePatientAndExamRequestDto(patient.Id);
 
-        var exam = await _examRepo.CreateAsync(examModel);
+        await _examRepo.CreateAsync(examModel);
 
-        if (exam == null)
-        {
-            return BadRequest("Exam could not be created.");
-        }
-
-        return CreatedAtAction(nameof(GetById), new { id = exam.Id }, exam.ToExamDto());
+        var createdExam = await _examRepo.GetByIdAsync(examModel.Id);
+        return CreatedAtAction(nameof(GetById), new { id = createdExam.Id }, createdExam.ToExamDto());
     }
 }

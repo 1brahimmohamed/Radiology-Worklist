@@ -9,6 +9,7 @@ public static class AuthMapper
     {
         return new RadiologistDto
         {
+            Id = radiologist.Id,
             Name = radiologist.Name,
             Email = radiologist.Email,
             Token = token

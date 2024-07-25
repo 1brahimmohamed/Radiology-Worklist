@@ -14,6 +14,7 @@ public class Exam
     public ExamStatus Status { get; set; } = ExamStatus.Scheduled;
     public string? Comments { get; set; } = String.Empty;
 
+
     public string RadiologistId { get; set; } = String.Empty;
 
     public Radiologist Radiologist { get; set; } = null!;

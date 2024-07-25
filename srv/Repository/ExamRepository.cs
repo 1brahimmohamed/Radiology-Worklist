@@ -80,7 +80,10 @@ public class ExamRepository : IExamRepository
 
     public async Task<Exam?> UpdateAsync(int id, UpdateExamRequestDto updateExamDto)
     {
-        var existingExam = await _context.Exams.FirstOrDefaultAsync(p => p.Id == id);
+        var existingExam = await _context.Exams
+            .Include(e => e.Patient)
+            .Include(e => e.Radiologist)
+            .FirstOrDefaultAsync(p => p.Id == id);
 
         if (existingExam == null)
         {

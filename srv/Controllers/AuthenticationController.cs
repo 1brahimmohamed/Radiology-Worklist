@@ -42,6 +42,7 @@ namespace srv.Controllers
             return Ok(
                 new RadiologistDto()
                 {
+                    Id = user.Id,
                     Name = user.Name,
                     Email = user.Email,
                     Token = _tokenService.CreateToken(user)
@@ -75,6 +76,7 @@ namespace srv.Controllers
                         return Ok(
                             new RadiologistDto()
                             {
+                                Id = appUser.Id,
                                 Name = appUser.Name,
                                 Email = appUser.Email,
                                 Token = _tokenService.CreateToken(appUser)

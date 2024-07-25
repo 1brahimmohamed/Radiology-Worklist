@@ -17,8 +17,8 @@ public static class ExamMapper
             Type = exam.Type,
             Date = exam.Date,
             Comments = exam.Comments,
-            Radiologist = exam.Radiologist.ToRadiologistExamDto(),
             Patient = exam.Patient.ToWithExamPatientDto(),
+            Radiologist = exam.Radiologist.ToRadiologistExamDto(),
         };
     }
 
