@@ -32,3 +32,11 @@ export interface IExamWorklist {
     status: string
     comments?: string,
 }
+
+export interface IExam {
+    id: number,
+    date: Date,
+    status: number,
+    type: string
+    comments?: string,
+}

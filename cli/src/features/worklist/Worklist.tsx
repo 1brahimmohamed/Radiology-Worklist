@@ -1,19 +1,17 @@
 import * as React from 'react';
-import {DataGrid, GridColDef} from '@mui/x-data-grid';
-import StatusChip from "../../ui/StatusChip.tsx";
+import {DataGrid} from '@mui/x-data-grid';
 import {useQuery} from "@tanstack/react-query";
 import {getExams} from "../../services/apiWorklist.ts";
 import Loading from "../../ui/Loading.tsx";
 import WORKLIST_TABLE_COLUMNS from "./WorklistTableColumns.tsx";
 import {useNavigate} from "react-router-dom";
-import redirect from "../../utils/redirect.ts";
-
+import Error from "../../ui/Error.tsx";
 
 
 const Worklist = () => {
 
 
-    const { data: exams, isLoading , isLoadingError} = useQuery({
+    const {data: exams, isLoading, isLoadingError} = useQuery({
         queryKey: ['exams'],
         queryFn: getExams,
     });
@@ -21,10 +19,10 @@ const Worklist = () => {
     const navigate = useNavigate();
 
     if (isLoading)
-        return <Loading />;
+        return <Loading/>;
 
     if (isLoadingError)
-        return <div>Failed to load exams</div>;
+        return <Error errorMessage={"Unable to Load the Exams please try again or refresh the page"}/>;
 
 
     console.log(exams);
@@ -40,6 +38,9 @@ const Worklist = () => {
                     <button
                         type="button"
                         className="block rounded-md bg-primary-main px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        onClick={() => {
+                            navigate('/add-exam')
+                        }}
                     >
                         Add Exam +
                     </button>
@@ -57,7 +58,7 @@ const Worklist = () => {
                         },
                     }}
                     onRowDoubleClick={(row) => {
-                       navigate(`/viewer/${row.id}`);
+                        navigate(`/viewer/${row.id}`);
                     }}
                     pageSizeOptions={[10, 25, 50]}
                 />

@@ -2,6 +2,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet';
 import { Suspense, lazy } from 'react';
 import Loading from "./ui/Loading.tsx";
+import AddExam from "./features/worklist/AddExam/AddExam.tsx";
 
 // Lazy loaded components
 const Login = lazy(() => import('./features/auth/Login'));
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Worklist />
+                    },
+                    {
+                        path: "add-exam",
+                        element: <AddExam />
                     },
                     {
                         path: 'logout',

@@ -1,14 +1,15 @@
 import AxiosUtil from "../utils/axios.ts";
 import {mapExamApiToWorklist} from "../utils/examsApiMapper.ts";
 import {IExamResponse} from "../interfaces/exam.ts";
+import {IPatient} from "../interfaces/patient.ts";
 
-const API_URL = `${import.meta.env.VITE_BASE_URL}/exam`;
+const API_URL = `${import.meta.env.VITE_BASE_URL}`;
 
 export const getExams = async () => {
 
     const resp = await AxiosUtil.sendRequest({
         method: 'GET',
-        url: `${API_URL}/my-exams`,
+        url: `${API_URL}/exam/my-exams`,
         headers: {
             Authorization: `Bearer ${localStorage.getItem('_auth')}`
         }
@@ -24,3 +25,41 @@ export const getExams = async () => {
         return mapExamApiToWorklist(data)
     }
 };
+
+
+export const doesPatientExist = async (nationalId: string) => {
+    const resp = await AxiosUtil.sendRequest({
+        method: 'GET',
+        url: `${API_URL}/patient/nationalId/${nationalId}`,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('_auth')}`
+        }
+    });
+
+    if (resp.status === 'success') {
+        const {data}: IPatient = resp;
+        return data;
+    }
+}
+
+export const createNewExam = async (requestBody) => {
+    return await AxiosUtil.sendRequest({
+        method: 'POST',
+        url: `${API_URL}/exam`,
+        data: requestBody,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('_auth')}`
+        }
+    });
+}
+
+export const createNewPatientWithExam = async (requestBody) => {
+    return await AxiosUtil.sendRequest({
+        method: 'POST',
+        url: `${API_URL}/exam/create-patient-and-exam`,
+        data: requestBody,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('_auth')}`
+        }
+    });
+}
