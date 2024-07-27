@@ -18,9 +18,9 @@ const Viewer = () => {
 
 
     return (
-        <div className={"bg-black h-full w-full"}>
-            {isImageIDs && viewerConfig.imageIds && viewerConfig.viewports.map(viewportIndex => (
-                <div key={viewportIndex}  className={"flex flex-1 h-full"}>
+        <div className={"bg-black h-full w-full h-screen"}>
+            {isImageIDs && viewerConfig.viewports.map(viewportIndex => (
+                <div key={viewportIndex} className={"flex flex-1 h-full"}>
                     <CornerstoneViewport
                         style={{flex: '1', minWidth: '100%', height: '100%'}}
                         tools={viewerConfig.tools}

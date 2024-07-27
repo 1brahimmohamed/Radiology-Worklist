@@ -3,6 +3,7 @@ import {ViewerProvider} from "../../context/ViewerContext.tsx";
 import initCornerstone from "../../utils/initCornerstone.js";
 import ViewerSidebar from "../../features/viewer/ViewerSidebar.tsx";
 
+// initialize cornerstone engine
 initCornerstone();
 const ViewerLayout = () => {
     return (
@@ -11,9 +12,13 @@ const ViewerLayout = () => {
 
                 <div className={'flex h-[100vh]'}>
                     <div className={'h-full w-12 max-w-52'}>
-                        <ViewerSidebar />
+                        <ViewerSidebar/>
                     </div>
-                    <div className={'h-auto flex-grow w-11/12'} onContextMenu={(e) => e.preventDefault()}>
+
+                    <div
+                        className={'h-auto flex-grow w-11/12'}
+                        onContextMenu={(e) => e.preventDefault()}
+                    >
                         <Outlet/>
                     </div>
                 </div>

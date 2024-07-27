@@ -9,15 +9,18 @@ function App() {
 
     return (
         <AuthProvider store={authStore}>
+
             <QueryClientProvider client={new QueryClient()}>
                 <ReactQueryDevtools initialIsOpen={false}/>
                 <LazyLoadedRouter/>
             </QueryClientProvider>
+
             <Toaster
                 position="bottom-center"
                 reverseOrder={false}
                 toastOptions={{duration: 2500}}
             />
+
         </AuthProvider>
     )
 }

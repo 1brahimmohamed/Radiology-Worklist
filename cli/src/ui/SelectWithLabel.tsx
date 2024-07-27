@@ -14,18 +14,20 @@ type TSelectWithLabel = {
 const SelectWithLabel: FC<TSelectWithLabel> = ({
                                                    id,
                                                    label,
-                                                   options= [],
+                                                   options = [],
                                                    selectClassName,
                                                    divWidth = '3',
                                                    autoComplete,
-    ...rest
+                                                   ...rest
                                                }) => {
     return (
         <div className={`sm:col-span-${divWidth}`}>
+
             <label htmlFor={id}
                    className="block text-sm font-medium leading-6 text-gray-900">
                 {label}
             </label>
+
             <div className="mt-2">
                 <select
                     id={id}
@@ -43,6 +45,7 @@ const SelectWithLabel: FC<TSelectWithLabel> = ({
                     }
                 </select>
             </div>
+
         </div>
     )
 }

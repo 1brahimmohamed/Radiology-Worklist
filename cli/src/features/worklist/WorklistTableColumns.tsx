@@ -1,12 +1,14 @@
 import { GridColDef } from "@mui/x-data-grid";
 import StatusChip from "../../ui/StatusChip.tsx";
 
+// Options for the displayed date format
 const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
 };
 
+// Options for the displayed time format
 const timeOptions: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
     minute: '2-digit',

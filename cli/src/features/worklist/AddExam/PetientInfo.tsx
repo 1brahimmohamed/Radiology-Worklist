@@ -2,15 +2,22 @@ import InputWithLabel from "../../../ui/InputWithLabel.tsx";
 import {doesPatientExist} from "../../../services/apiWorklist.ts";
 import SelectWithLabel from "../../../ui/SelectWithLabel.tsx";
 import {GENDER_MAPPER} from "../../../utils/mappedValues.ts";
+import {formatDate} from "../../../utils/formatDate.ts";
 
-function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(date.getDate()).padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
+const clearForm = (formRef) => {
+    formRef.current.id = '';
+    formRef.current['patientName'].value = '';
+    formRef.current['email'].value = '';
+    formRef.current['birthday'].value = '';
 }
-
+const setFormValues = (formRef, patientData) => {
+    formRef.current.id = patientData.id;
+    formRef.current['patientName'].value = patientData.name;
+    formRef.current['email'].value = patientData.email;
+    formRef.current['birthday'].value = formatDate(new Date(patientData.birthday));
+    formRef.current['gender'].value = GENDER_MAPPER[patientData.gender];
+}
 
 const PatientInfo = ({
                          patientExists,
@@ -21,30 +28,15 @@ const PatientInfo = ({
 
     const handleSearchPatient = async (event) => {
         const newValue = event.target.value;
-        if (newValue.length === 14) {
 
+        if (newValue.length === 14 && formRef.current) {
             const patientData = await doesPatientExist(newValue);
 
             if (patientData) {
-
-                if (formRef.current) {
-                    formRef.current.id = patientData.id;
-                    formRef.current['patientName'].value = patientData.name;
-                    formRef.current['email'].value = patientData.email;
-                    formRef.current['birthday'].value = formatDate(new Date(patientData.birthday));
-                    formRef.current['gender'].value = GENDER_MAPPER[patientData.gender];
-                }
-
+                setFormValues(formRef, patientData);
                 patientExistsHandler(true);
-
             } else {
-
-                if (formRef.current) {
-                    formRef.current['patientName'].value = '';
-                    formRef.current['email'].value = '';
-                    formRef.current['birthday'].value = '';
-                }
-
+                clearForm(formRef);
                 patientExistsHandler(false);
             }
         }
@@ -69,7 +61,7 @@ const PatientInfo = ({
                         <InputWithLabel
                             id={"nationalId"}
                             required
-                            label={"National ID"}
+                            label={"National ID*"}
                             type={"text"}
                             onInputChangeHandler={handleSearchPatient} maxLength={14}
                         />
@@ -77,7 +69,7 @@ const PatientInfo = ({
                         <InputWithLabel
                             id={"patientName"}
                             required
-                            label={"Patient Name"}
+                            label={"Patient Name*"}
                             type={"text"}
                             disabled={patientExists}
                         />
@@ -85,15 +77,16 @@ const PatientInfo = ({
                         <InputWithLabel
                             id={"email"}
                             required
-                            label={"Email"}
+                            label={"Email*"}
                             type={"email"}
                             disabled={patientExists}
                         />
 
 
                         <SelectWithLabel
-                            id={"gender"} label={"Gender"}
+                            id={"gender"}
                             required
+                            label={"Gender*"}
                             disabled={patientExists}
                             options={['Male', "Female"]}
                         />
@@ -101,7 +94,7 @@ const PatientInfo = ({
                         <InputWithLabel
                             id={"birthday"}
                             required
-                            label={"Birthday"}
+                            label={"Birthday*"}
                             type={"date"}
                             disabled={patientExists}
                         />

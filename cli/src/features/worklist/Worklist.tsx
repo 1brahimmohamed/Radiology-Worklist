@@ -28,7 +28,8 @@ const Worklist = () => {
     console.log(exams);
 
     return (
-        <div className={"flex-col space-y-10"}>
+        <div className={"flex-col space-y-5"}>
+
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
                     <h1 className="text-2xl font-semibold leading-6 text-gray-900">Exams Worklist</h1>
@@ -46,7 +47,6 @@ const Worklist = () => {
                     </button>
                 </div>
             </div>
-
 
             <div className={"h-full min-h-96 w-auto"}>
                 <DataGrid

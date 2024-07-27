@@ -1,8 +1,9 @@
+import { Suspense, lazy } from 'react';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet';
-import { Suspense, lazy } from 'react';
 import Loading from "./ui/Loading.tsx";
 import AddExam from "./features/worklist/AddExam/AddExam.tsx";
+import Error from "./ui/Error.tsx";
 
 // Lazy loaded components
 const Login = lazy(() => import('./features/auth/Login'));
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <AuthOutlet fallbackPath={'/login'}></AuthOutlet>,
+        errorElement: <Error errorMessage={"Something Went Wrong, please reload the application"} />,
         children: [
             {
                 path: "/",

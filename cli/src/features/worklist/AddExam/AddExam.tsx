@@ -7,14 +7,44 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import {STATUS_TO_NUMBER_MAPPER} from "../../../utils/mappedValues.ts";
 import {createNewExam, createNewPatientWithExam} from "../../../services/apiWorklist.ts";
 import toast from "react-hot-toast";
-import {IExamResponse} from "../../../interfaces/exam.ts";
 import redirect from "../../../utils/redirect.ts";
+
+
+const setupPatientExistRequestBody = (examFormData: FormData, patientFormRef: React.RefObject<HTMLFormElement>, user) => {
+    return {
+        patientId: patientFormRef.current?.id,
+        radiologistId: user.id,
+        type: examFormData.get('examType'),
+        date: examFormData.get('examDate'),
+        status: STATUS_TO_NUMBER_MAPPER[examFormData.get('examStatus')],
+        comments: examFormData.get('examComments'),
+
+    }
+}
+
+const setupPatientNotExistRequestBody = (examFormData: FormData, patientFormData: FormData, user) => {
+    return {
+        // patient
+        nationalId: patientFormData.get('nationalId'),
+        name: patientFormData.get('patientName'),
+        email: patientFormData.get('email'),
+        birthday: patientFormData.get('birthday'),
+        gender: patientFormData.get('gender'),
+
+        // exam
+        type: examFormData.get('examType'),
+        date: examFormData.get('examDate'),
+        status: STATUS_TO_NUMBER_MAPPER[examFormData.get('examStatus')],
+        comments: examFormData.get('examComments'),
+        radiologistId: user.id,
+    }
+}
 
 
 const AddExam = () => {
 
-    const patientFormRef = useRef<HTMLFormElement>(null);
-    const examFormRef = useRef<HTMLFormElement>(null);
+    const patientFormRef = useRef<HTMLFormElement | null>(null);
+    const examFormRef = useRef<HTMLFormElement | null>(null);
     const [patientExists, setPatientExists] = useState<boolean>(false);
     const navigate = useNavigate();
     const user = useAuthUser();
@@ -22,75 +52,44 @@ const AddExam = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const examFormData = new FormData(examFormRef.current);
+        // check if forms are valid
+        if (patientFormRef.current && !patientFormRef.current?.reportValidity()) {
+            toast.error("Please fill in all the required patient fields");
+        }
 
-        if (patientExists) {
+        // check if forms are valid
+        if (examFormRef.current && !examFormRef.current?.reportValidity()) {
+            toast.error("Please fill in all the required exams fields");
+        }
 
-            const body = {
-                patientId: patientFormRef.current.id,
-                radiologistId: user.id,
+        // get form data from both forms
+        const examFormData = new FormData(examFormRef?.current);
+        const patientFormData = new FormData(patientFormRef?.current);
 
-                type: examFormData.get('examType'),
-                date: examFormData.get('examDate'),
-                status: STATUS_TO_NUMBER_MAPPER[examFormData.get('examStatus')],
-                comments: examFormData.get('examComments'),
-            }
+        console.log("p1");
 
-            const resp = await createNewExam(body);
-
-            if (resp.status === 'error') {
-                const {message} = resp;
-                toast.error(message);
-            }
-
+        // handle response from api
+        const handleResponse = (resp) => {
             if (resp.status === 'success') {
-                const {data}: IExamResponse = resp;
-
                 toast.success("Exam added successfully");
-
-                console.log("success", data);
-
                 redirect(navigate, '/');
-
             }
+        };
+
+        // check if patient exists or not and call the appropriate api
+        if (patientExists) {
+            const resp = await createNewExam(setupPatientExistRequestBody(examFormData, patientFormRef, user));
+            handleResponse(resp);
         } else {
-            const patientFormData = new FormData(patientFormRef.current);
-
-            const body = {
-                // patient
-                nationalId: patientFormData.get('nationalId'),
-                name: patientFormData.get('patientName'),
-                email: patientFormData.get('email'),
-                birthday: patientFormData.get('birthday'),
-                gender: patientFormData.get('gender'),
-
-                // exam
-                type: examFormData.get('examType'),
-                date: examFormData.get('examDate'),
-                status: STATUS_TO_NUMBER_MAPPER[examFormData.get('examStatus')],
-                comments: examFormData.get('examComments'),
-                radiologistId: user.id,
-            }
-
-            const resp = await createNewPatientWithExam(body)
-
-            if (resp.status === 'error') {
-                const {message} = resp;
-                toast.error(message.title);
-            }
-
-            else if (resp.status === 'success') {
-                toast.success("Exam added successfully");
-                redirect(navigate, '/');
-            }
-
+            const resp = await createNewPatientWithExam(setupPatientNotExistRequestBody(examFormData, patientFormData, user));
+            handleResponse(resp);
         }
 
     }
     return (
+        <div className={"flex-col space-y-10"}>
 
-        <div className={"flex-col space-y-10 px-32 py-10"}>
-            <div className="sm:flex sm:items-center pt-1">
+            <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
                     <h1 className="text-2xl font-semibold leading-6 text-gray-900">Add Exam</h1>
                     <p className="mt-2 text-sm text-gray-700"> Enter the patient's personal details and exam
@@ -98,11 +97,14 @@ const AddExam = () => {
                 </div>
             </div>
 
-            <div className="space-y-10 divide-y divide-gray-900/10 ">
+            <div className="space-y-10 divide-y divide-gray-900/10 px-4 sm:px-32 ">
 
 
-                <PatientInfo formRef={patientFormRef} patientExists={patientExists}
-                             patientExistsHandler={setPatientExists}/>
+                <PatientInfo
+                    formRef={patientFormRef}
+                    patientExists={patientExists}
+                    patientExistsHandler={setPatientExists}
+                />
 
                 <ExamInfo formRef={examFormRef}/>
 
@@ -116,7 +118,7 @@ const AddExam = () => {
                     </button>
 
                     <button
-                        type="submit"
+                        type="button"
                         onClick={handleSubmit}
                         className="rounded-md bg-primary-main px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
                     >

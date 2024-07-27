@@ -9,7 +9,7 @@ type TStatusChip = {
     status: string;
 };
 
-
+// map status to icon
 const STATUS = {
     'Scheduled': <ScheduleIcon/>,
     'Arrived': <WhereToVoteIcon/>,
@@ -17,6 +17,7 @@ const STATUS = {
     'Completed': <CheckIcon/>,
 };
 
+// map status to color
 const STATUS_COLOR = {
     'Scheduled,': 'primary',
     'Arrived': 'warning',
@@ -28,8 +29,7 @@ const StatusChip: FC<TStatusChip> = ({status}) => {
     return (
         <Chip
             label={status}
-            onDelete={() => {
-            }}
+            onDelete={() => {}}
             deleteIcon={STATUS[status]}
             color={STATUS_COLOR[status]}
             variant="filled"

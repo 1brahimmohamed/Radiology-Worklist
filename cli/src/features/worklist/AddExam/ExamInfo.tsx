@@ -18,14 +18,14 @@ const ExamInfo = ({formRef}) => {
                         <InputWithLabel
                             id={"examType"}
                             required
-                            label={"Exam Type"}
+                            label={"Exam Type*"}
                             type={"text"}
                         />
 
                         <InputWithLabel
                             id={"examDate"}
                             required
-                            label={"Exam Date"}
+                            label={"Exam Date*"}
                             type={"datetime-local"}
                         />
 

@@ -1,9 +1,9 @@
-import {Link, Outlet} from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import Topbar from "../Topbar.tsx";
 
 const MainLayout = () => {
     return (
-        <main className="flex-col px-4 sm:px-6 lg:px-8 space-y-5 py-2">
+        <main className="flex-col px-4 sm:px-6 lg:px-8 space-y-10 py-2">
 
             <div>
                 <Topbar />

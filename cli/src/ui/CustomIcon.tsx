@@ -9,7 +9,7 @@ import Length from "../assets/icons/length.svg"
 import Rectangle from "../assets/icons/rectangle.svg"
 
 
-
+// map icon name to icon image
 const ICON_NAME = {
     'angle': Angle,
     "bidirectional": Bidirectional,
@@ -21,7 +21,7 @@ const ICON_NAME = {
 }
 
 
-const CustomIcon = ({iconName}) => {
+const CustomIcon = ({iconName}: { iconName: string }) => {
     return (
         <Icon>
             <img src={ICON_NAME[iconName]} alt={"icon"}/>

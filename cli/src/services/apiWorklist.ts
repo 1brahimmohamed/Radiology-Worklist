@@ -5,9 +5,17 @@ import {IPatient} from "../interfaces/patient.ts";
 
 const API_URL = `${import.meta.env.VITE_BASE_URL}`;
 
+/**
+ * Fetches the list of exams for the authenticated user.
+ *
+ * @async
+ * @function getExams
+ * @returns {Promise<Array>} A promise that resolves to the list of exams mapped to the worklist format.
+ * @throws {Error} Throws an error if the response status is 'error'.
+ */
 export const getExams = async () => {
 
-    const resp = await AxiosUtil.sendRequest({
+    const response = await AxiosUtil.sendRequest({
         method: 'GET',
         url: `${API_URL}/exam/my-exams`,
         headers: {
@@ -15,20 +23,27 @@ export const getExams = async () => {
         }
     });
 
-    if (resp.status === 'error') {
-        const {message} = resp;
+    if (response.status === 'error') {
+        const {message} = response;
         throw new Error(message);
     }
 
-    if (resp.status === 'success') {
-        const {data}: IExamResponse = resp;
+    if (response.status === 'success') {
+        const {data}: IExamResponse = response;
         return mapExamApiToWorklist(data)
     }
 };
 
-
+/**
+ * Checks if a patient exists based on their National ID and returns the patient data if they exist.
+ *
+ * @async
+ * @function doesPatientExist
+ * @param {string} nationalId - The National ID of the patient to check.
+ * @returns {Promise<IPatient | undefined>} A promise that resolves to the patient data if the patient exists, or undefined if the patient does not exist.
+ */
 export const doesPatientExist = async (nationalId: string) => {
-    const resp = await AxiosUtil.sendRequest({
+    const response = await AxiosUtil.sendRequest({
         method: 'GET',
         url: `${API_URL}/patient?NationalId=${nationalId}`,
         headers: {
@@ -36,11 +51,21 @@ export const doesPatientExist = async (nationalId: string) => {
         }
     });
 
-    if (resp.status === 'success') {
-        const {data}: IPatient[] = resp;
+    if (response.status === 'success') {
+        const {data}: IPatient[] = response;
         return data[0];
     }
 }
+
+
+/**
+ * Creates a new exam based on the provided request body.
+ *
+ * @async
+ * @function createNewExam
+ * @param {Object} requestBody - The request body to create the new exam.
+ * @returns {Promise<Object>} A promise that resolves to the response from the API.
+ */
 
 export const createNewExam = async (requestBody) => {
     return await AxiosUtil.sendRequest({
@@ -52,6 +77,15 @@ export const createNewExam = async (requestBody) => {
         }
     });
 }
+
+/**
+ * Creates a new patient and Exam based on the provided request body.
+ *
+ * @async
+ * @function createNewPatientWithExam
+ * @param {Object} requestBody - The request body to create the new patient & exam.
+ * @returns {Promise<Object>} A promise that resolves to the response from the API.
+ */
 
 export const createNewPatientWithExam = async (requestBody) => {
     return await AxiosUtil.sendRequest({
