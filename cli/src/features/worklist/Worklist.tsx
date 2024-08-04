@@ -48,7 +48,7 @@ const Worklist = () => {
                 </div>
             </div>
 
-            <div className={"h-full min-h-96 w-auto"}>
+            <div className={"h-[78vh] min-h-96 w-auto"}>
                 <DataGrid
                     rows={exams}
                     columns={WORKLIST_TABLE_COLUMNS}
