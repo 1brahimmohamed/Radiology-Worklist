@@ -1,4 +1,4 @@
-# HealthTOM - Radiology Worklist 
+# Radiology Worklist 
 
 > A web application that allows radiologists to view and manage their exam worklist powered 
 > with DICOM Viewer
