@@ -71,6 +71,10 @@ npm run dev
 3. Open your web browser and visit `http://localhost:5173`.
 
 
+## Demo
+[demo.mp4](demo%2Fdemo.mp4)
+
+
 ## Contact
 
 If you want to contact me you can reach me at `ibrahim.mohamed01@eng-stu.cu.edu.eg`

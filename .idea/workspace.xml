@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97f4f793-90f3-407b-8c8f-1bc8ceedd901" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/cli/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cli/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cli/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cli/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cli/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/public/ui/logo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/cli/public/ui/logo.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/src/assets/react.svg" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/assets/icons/react.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/src/router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cli/src/vite-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/cli/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cli/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/cli/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -50,27 +42,38 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/My PC/Projects/Web/HealthTOM Task/cli/public/ui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/My PC/Projects/Web/AIRA Task&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\My PC\\Projects\\Web\\HealthTOM Task\\cli\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\public\ui" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets\ui" />
       <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets\icons" />
-      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\features\viewer" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\helpers" />
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\public\ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\features\worklist\AddExam" />
       <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\assets\icons" />
       <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\ui\layouts" />
       <recent name="D:\My PC\Projects\Web\HealthTOM Task\cli\src\features\viewer" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-985749b364ce-JavaScript-WS-233.15325.18" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -88,6 +91,24 @@
       <workItem from="1721246419439" duration="721000" />
       <workItem from="1721267177740" duration="7791000" />
       <workItem from="1721275075997" duration="430000" />
+      <workItem from="1721533279736" duration="8729000" />
+      <workItem from="1721673849837" duration="173000" />
+      <workItem from="1721674048994" duration="13968000" />
+      <workItem from="1721689140047" duration="6230000" />
+      <workItem from="1721699772183" duration="2479000" />
+      <workItem from="1721713038796" duration="1600000" />
+      <workItem from="1721837685236" duration="406000" />
+      <workItem from="1721838861189" duration="1019000" />
+      <workItem from="1721843311771" duration="18376000" />
+      <workItem from="1721866176325" duration="3556000" />
+      <workItem from="1721932188282" duration="21000" />
+      <workItem from="1721935961424" duration="748000" />
+      <workItem from="1721952440324" duration="2375000" />
+      <workItem from="1722034365233" duration="9670000" />
+      <workItem from="1722185545109" duration="2217000" />
+      <workItem from="1722201310121" duration="473000" />
+      <workItem from="1722607758112" duration="13000" />
+      <workItem from="1726170568635" duration="367000" />
     </task>
     <servers />
   </component>
